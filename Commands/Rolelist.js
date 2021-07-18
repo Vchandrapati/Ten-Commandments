@@ -6,8 +6,9 @@ module.exports = {
     
     callback: ({ message }) => {
         
-        const args = message.content.split(" ")
-        const Role = message.guild.roles.cache.find(role => role.name == args.slice(1).join(' '));
+        const msg = message.content.replace("@", "").replace("&", "").replace("<", "").replace(">", "")
+        const args = msg.split(" ")
+        const Role = message.guild.roles.cache.find(role => role.id == args.slice(1).join(' '));
 
         const recruits = new Discord.MessageEmbed()
             .setTitle(`${Role.name}`)
